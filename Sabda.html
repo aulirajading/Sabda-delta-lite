@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Delta Lite - Gratis dari Sabda</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --hijau-primer: #2e7d32;
+            --hijau-sekunder: #4caf50;
+            --hijau-terang: #8bc34a;
+            --hijau-gelap: #1b5e20;
+            --putih: #ffffff;
+            --abu-abu: #f5f5f5;
+            --abu-abu-gelap: #333333;
+            --merah-peringatan: #d32f2f;
+        }
+        
+        body {
+            background-color: var(--putih);
+            color: var(--abu-abu-gelap);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--hijau-primer);
+            color: var(--putih);
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 28px;
+            color: var(--hijau-terang);
+        }
+        
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: var(--putih);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 17px;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--hijau-terang);
+        }
+        
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        /* Blog Posts */
+        .blog-post {
+            background-color: var(--putih);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--hijau-primer);
+        }
+        
+        .blog-post h2 {
+            color: var(--hijau-gelap);
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+        
+        .post-meta {
+            display: flex;
+            gap: 15px;
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        
+        .post-meta i {
+            margin-right: 5px;
+            color: var(--hijau-sekunder);
+        }
+        
+        .blog-post p {
+            margin-bottom: 20px;
+            font-size: 17px;
+        }
+        
+        /* Peringatan */
+        .warning-box {
+            background-color: #ffebee;
+            border-left: 5px solid var(--merah-peringatan);
+            padding: 20px;
+            border-radius: 5px;
+            margin: 30px 0;
+        }
+        
+        .warning-box h3 {
+            color: var(--merah-peringatan);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Download Section */
+        .download-section {
+            background-color: var(--abu-abu);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 30px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .download-section h2 {
+            color: var(--hijau-gelap);
+            margin-bottom: 15px;
+            font-size: 26px;
+        }
+        
+        .download-section p {
+            margin-bottom: 25px;
+            font-size: 18px;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background-color: var(--hijau-sekunder);
+            color: var(--putih);
+            text-decoration: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+        }
+        
+        .download-btn:hover {
+            background-color: var(--hijau-gelap);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
+        }
+        
+        .download-btn i {
+            margin-right: 10px;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            background-color: var(--putih);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 25px;
+            height: fit-content;
+        }
+        
+        .sidebar h3 {
+            color: var(--hijau-gelap);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--hijau-terang);
+            font-size: 22px;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        
+        .sidebar li {
+            margin-bottom: 15px;
+        }
+        
+        .sidebar a {
+            color: var(--abu-abu-gelap);
+            text-decoration: none;
+            transition: color 0.3s;
+            display: block;
+            padding: 8px 0;
+            border-bottom: 1px dashed #eee;
+        }
+        
+        .sidebar a:hover {
+            color: var(--hijau-primer);
+            padding-left: 10px;
+        }
+        
+        .sidebar a i {
+            margin-right: 10px;
+            color: var(--hijau-sekunder);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--hijau-gelap);
+            color: var(--putih);
+            padding: 40px 0 20px;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--hijau-terang);
+        }
+        
+        .footer-section p {
+            margin-bottom: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--putih);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--hijau-sekunder);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .blog-post {
+                padding: 20px;
+            }
+            
+            .blog-post h2 {
+                font-size: 24px;
+            }
+            
+            .download-section {
+                padding: 20px;
+            }
+            
+            .download-btn {
+                padding: 12px 30px;
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-leaf"></i>
+                <h1>Blog Delta Lite</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> Beranda</a></li>
+                    <li><a href="#"><i class="fas fa-download"></i> Download</a></li>
+                    <li><a href="#"><i class="fas fa-book"></i> Panduan</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> Tentang</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-content">
+            <!-- Blog Posts -->
+            <div class="blog-posts">
+                <article class="blog-post">
+                    <h2>Apa Itu Delta Lite?</h2>
+                    <div class="post-meta">
+                        <span><i class="fas fa-calendar-alt"></i> 27 desember 2025</span>
+                        <span><i class="fas fa-user"></i> Sabda</span>
+                        <span><i class="fas fa-folder"></i> Software</span>
+                    </div>
+                    <p>Delta Lite adalah aplikasi gratis yang dikembangkan oleh Sabda untuk memudahkan berbagai aktivitas digital. Aplikasi ini dirancang dengan antarmuka yang sederhana namun powerful, cocok untuk pengguna pemula maupun advanced.</p>
+                    <p>Dengan Delta Lite, Anda dapat mengelola file, mengedit dokumen, dan melakukan banyak tugas produktif lainnya tanpa biaya apapun. Aplikasi ini sepenuhnya gratis dan akan selalu gratis.</p>
+                    
+                    <!-- Download Section -->
+                    <div class="https://sfl.gl/eEoB0">
+                        <h2>Download Delta Lite</h2>
+                        <p>Untuk mendapatkan Delta Lite, pencet tombol di bawah:</p>
+                        <!-- Link yang nanti bisa Anda ganti -->
+                        <a href="https://example.com/download-delta-lite" class="download-btn" target="_blank">
+                            <i class="fas fa-download"></i> Download Delta Lite
+                        </a>
+                    </div>
+                    
+                    <!-- Peringatan -->
+                    <div class="warning-box">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Peringatan Penting!</h3>
+                        <p><strong>DILARANG MENJUAL DELTA LITE FREE DARI SABDA.</strong> Aplikasi ini didistribusikan secara gratis dan tidak diperjualbelikan. Jika Anda menemukan seseorang yang menjual Delta Lite, laporkan kepada kami melalui halaman kontak.</p>
+                    </div>
+                    
+                    <p>Delta Lite dikembangkan dengan penuh dedikasi untuk membantu komunitas digital. Kami sangat menghargai dukungan Anda dengan tidak menyalahgunakan aplikasi ini untuk tujuan komersial ilegal.</p>
+                    <p>Jika Anda merasa terbantu dengan Delta Lite, sebarkan informasi ini kepada teman dan keluarga Anda. Mari kita bangun komunitas yang saling membantu tanpa harus mengeluarkan biaya.</p>
+                </article>
+                
+                <article class="blog-post">
+                    <h2>Fitur Unggulan Delta Lite</h2>
+                    <div class="post-meta">
+                        <span><i class="fas fa-calendar-alt"></i> 8 Mei 2024</span>
+                        <span><i class="fas fa-user"></i> Sabda</span>
+                        <span><i class="fas fa-folder"></i> Review</span>
+                    </div>
+                    <p>Delta Lite memiliki berbagai fitur yang membuatnya menjadi pilihan tepat untuk kebutuhan sehari-hari. Berikut adalah beberapa fitur unggulannya:</p>
+                    <ul style="padding-left: 20px; margin-bottom: 20px;">
+                        <li>Ringan dan tidak memakan banyak memory</li>
+                        <li>sudah di clone per aplikasi dan tidak butuh lagi dual clone</li>
+                        <li>Tidak mengandung malware atau iklan yang mengganggu</li>
+                        <li>Update rutin untuk perbaikan bug dan penambahan fitur</li>
+                        <li>Kompatibel dengan berbagai versi sistem operasi</li>
+                    </ul>
+                    <p>Kami selalu terbuka untuk masukan dan saran dari pengguna untuk menjadikan Delta Lite semakin baik dari waktu ke waktu.</p>
+                </article>
+            </div>
+            
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <h3>Menu Cepat</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-download"></i> Download Delta Lite</a></li>
+                    <li><a href="#"><i class="fas fa-book"></i> Panduan Penggunaan</a></li>
+                    <li><a href="#"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                    <li><a href="#"><i class="fas fa-history"></i> Changelog</a></li>
+                    <li><a href="#"><i class="fas fa-users"></i> Komunitas</a></li>
+                </ul>
+                
+                <h3>Postingan Terbaru</h3>
+                <ul>
+                    <li><a href="#"><i class="fas fa-file-alt"></i> Cara Instal Delta Lite</a></li>
+                    <li><a href="#"><i class="fas fa-file-alt"></i> Troubleshooting Umum</a></li>
+                    <li><a href="#"><i class="fas fa-file-alt"></i> Tips Menggunakan Delta Lite</a></li>
+                    <li><a href="#"><i class="fas fa-file-alt"></i> Update v1.2.0 Rilis</a></li>
+                    <li><a href="#"><i class="fas fa-file-alt"></i> Wawancara dengan Developer</a></li>
+                </ul>
+                
+                <h3>Link Penting</h3>
+                <!-- Tembusan link yang bisa Anda ganti -->
+                <ul>
+                    <li><a href="https://discord.com/invite/7gsqgnSVCm" target="_blank"><i class="fas fa-comments"></i> Discord</a></li>
+                    <li><a href="https://example.com/report" target="_blank"><i class="fas fa-flag"></i> Laporkan Penyalahgunaan</a></li>
+                    <li><a href="https://saweria.co/Sabdaplays" target="_blank"><i class="fas fa-heart"></i> Donasi</a></li>
+                </ul>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Tentang Blog Ini</h3>
+                    <p>Blog ini didedikasikan untuk memberikan informasi tentang Delta Lite, aplikasi gratis dari Sabda. Kami berkomitmen untuk menyediakan software berkualitas tanpa biaya.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Penting Diingat</h3>
+                    <p><strong>Delta Lite adalah aplikasi gratis.</strong> Dilarang keras memperjualbelikan software ini. Mari kita jaga komunitas yang sehat dengan menghargai karya developer.</p>
+                    <p>Gunakan aplikasi ini dengan bijak dan sebarkan kepada yang membutuhkan.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Kontak</h3>
+                    <p><i class="fas fa-envelope"></i> sabdacompany@gmail.com</p>
+                    <p><i class="fas fa-globe"></i> https://discord.com/invite/7gsqgnSVCm</p>
+                    <p>Untuk pertanyaan dan dukungan teknis, silakan kunjungi forum kami.</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Blog Delta Lite. Hak Cipta Dilindungi. Delta Lite adalah aplikasi gratis dari Sabda.</p>
+                <p style="margin-top: 5px; color: #bbb;">Dilarang menjual Delta Lite free dari Sabda.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Fungsi untuk menampilkan konfirmasi sebelum download
+        document.addEventListener('DOMContentLoaded', function() {
+            const downloadBtn = document.querySelector('.download-btn');
+            
+            if (downloadBtn) {
+                downloadBtn.addEventListener('click', function(e) {
+                    const userConfirmed = confirm("Anda akan mengunduh Delta Lite gratis dari Sabda. Ingat, dilarang menjual aplikasi ini. Lanjutkan?");
+                    
+                    if (!userConfirmed) {
+                        e.preventDefault();
+                    }
+                });
+            }
+            
+            // Tambahkan efek scroll halus untuk semua link
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
